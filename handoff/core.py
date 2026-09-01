@@ -4,6 +4,7 @@
 
 import os
 import re
+import uuid
 from datetime import datetime
 from pathlib import Path
 from typing import Optional
@@ -31,8 +32,10 @@ class HandoffManager:
         init_git_repo(str(self.base_dir))
 
     def _generate_id(self) -> str:
-        """生成接棒ID"""
-        return datetime.now().strftime("handoff_%Y%m%d_%H%M%S")
+        """生成接棒ID（时间戳+随机后缀，避免同一秒冲突）"""
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        short_uuid = uuid.uuid4().hex[:6]
+        return f"handoff_{timestamp}_{short_uuid}"
 
     def _parse_front_matter(self, content: str) -> dict:
         """解析YAML front matter"""
@@ -46,6 +49,11 @@ class HandoffManager:
                 key, value = line.split(":", 1)
                 result[key.strip()] = value.strip()
         return result
+
+    def _get_sorted_files(self, directory: Path) -> list:
+        """按修改时间倒序排列文件（最新的在前）"""
+        files = list(directory.glob("*.md"))
+        return sorted(files, key=lambda f: f.stat().st_mtime, reverse=True)
 
     def _get_handoff_path(self, handoff_id: str) -> Optional[Path]:
         """根据ID查找接棒文件路径"""
@@ -111,8 +119,8 @@ class HandoffManager:
             if not file_path:
                 return {"error": f"接棒文档不存在: {handoff_id}"}
         else:
-            # 找最近的active状态接棒
-            active_files = sorted(self.active_dir.glob("*.md"), reverse=True)
+            # 找最近的active状态接棒（按修改时间）
+            active_files = self._get_sorted_files(self.active_dir)
             if not active_files:
                 return {"error": "没有待接棒的任务"}
             file_path = active_files[0]
@@ -148,8 +156,8 @@ class HandoffManager:
             if not file_path:
                 return {"error": f"接棒文档不存在: {handoff_id}"}
         else:
-            # 找最近的accepted状态接棒
-            active_files = sorted(self.active_dir.glob("*.md"), reverse=True)
+            # 找最近的accepted/active状态接棒（按修改时间）
+            active_files = self._get_sorted_files(self.active_dir)
             file_path = None
             for f in active_files:
                 content = f.read_text(encoding="utf-8")
@@ -197,8 +205,8 @@ class HandoffManager:
         """列出所有接棒"""
         result = []
 
-        # 列出active目录
-        for f in sorted(self.active_dir.glob("*.md"), reverse=True):
+        # 列出active目录（按修改时间倒序）
+        for f in self._get_sorted_files(self.active_dir):
             content = f.read_text(encoding="utf-8")
             fm = self._parse_front_matter(content)
 
@@ -221,8 +229,8 @@ class HandoffManager:
                 }
             )
 
-        # 列出archive目录
-        for f in sorted(self.archive_dir.glob("*.md"), reverse=True):
+        # 列出archive目录（按修改时间倒序）
+        for f in self._get_sorted_files(self.archive_dir):
             content = f.read_text(encoding="utf-8")
             fm = self._parse_front_matter(content)
 
