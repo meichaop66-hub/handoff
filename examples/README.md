@@ -1,78 +1,70 @@
-# 使用示例
+# Usage Examples
 
-## 示例1：跨AI工具写文章
+## Example 1: Writing an article across AI tools
 
-### 在豆包里创建接棒
-
+### Create a handoff in Doubao
 ```bash
-handoff create "写公众号第一篇文章初稿" \
-  --completed "标题、大纲、风格已定，配图6张已做好" \
-  --todo "全文初稿3000字，按大纲写" \
-  --notes "简洁优雅，柴静式叙事，避免AI黑话；配图用希腊雕塑风" \
-  --files "文章大纲：https://feishu.doubao.com/docx/xxx" \
-  --project "公众号文章" \
-  --tags "写作,发布"
+handoff create "Write first draft of first WeChat article" \
+  --completed "Title, outline, style finalized, 6 illustrations ready" \
+  --todo "Full draft 3000 words, follow the outline" \
+  --notes "Concise and elegant, Chai Jing-style narrative, avoid AI jargon; use Greek sculpture style illustrations" \
+  --files "Article outline: https://feishu.doubao.com/docx/xxx" \
+  --project "WeChat Article" \
+  --tags "writing,publishing"
 ```
 
-### 在WorkBuddy里接受并完成
-
+### Accept and complete in WorkBuddy
 ```bash
-# 接受接棒
+# Accept handoff
 handoff accept
 
-# 写完后完成
+# Complete after finishing
 handoff complete \
-  --output "初稿已写完，存在 https://feishu.doubao.com/docx/yyy" \
-  --notes "第三节案例待补充，建议用户提供真实数据"
+  --output "Draft finished, saved at https://feishu.doubao.com/docx/yyy" \
+  --notes "Section 3 case study needs补充, suggest user provide real data"
 ```
 
-### 回到豆包继续
-
+### Go back to Doubao to continue
 ```bash
 handoff accept
-# 自动读到WorkBuddy完成了什么，直接开始改稿
+# Automatically reads what WorkBuddy completed, starts editing directly
 ```
 
 ---
 
-## 示例2：多设备写代码
+## Example 2: Coding across multiple devices
 
-### 公司电脑上创建接棒
-
+### Create a handoff on work computer
 ```bash
-handoff create "实现用户登录功能" \
-  --completed "数据库表结构已设计，API接口已定义" \
-  --todo "编写登录接口、JWT token生成、前端登录页面" \
-  --notes "用FastAPI，密码用bcrypt加密" \
-  --files "代码仓库：https://github.com/xxx/project" \
-  --project "用户系统" \
-  --tags "后端,登录"
+handoff create "Implement user login feature" \
+  --completed "Database schema designed, API endpoints defined" \
+  --todo "Write login endpoint, JWT token generation, frontend login page" \
+  --notes "Use FastAPI, encrypt passwords with bcrypt" \
+  --files "Code repo: https://github.com/xxx/project" \
+  --project "User System" \
+  --tags "backend,login"
 ```
 
-### 同步到家里电脑
-
+### Sync to home computer
 ```bash
-# 把 ~/.handoff 目录同步到Git或云盘
+# Sync ~/.handoff directory to Git or cloud drive
 cd ~/.handoff
 git add -A && git commit -m "handoff update" && git push
 ```
 
-### 家里电脑上继续
-
+### Continue on home computer
 ```bash
 cd ~/.handoff && git pull
 handoff accept
-# 开始写代码
+# Start coding
 ```
 
 ---
 
-## 示例3：MCP配置
+## Example 3: MCP Configuration
 
 ### Claude Code
-
-在 `~/.claude.json` 中添加：
-
+Add to `~/.claude.json`:
 ```json
 {
   "mcpServers": {
@@ -84,11 +76,10 @@ handoff accept
 }
 ```
 
-然后直接跟Claude说：
-- "帮我创建接棒，这个功能交给下一个AI继续"
-- "接棒，看看有什么待办"
-- "完成接棒，记录一下产出"
+Then just tell Claude:
+- "Create a handoff for me, pass this feature to the next AI"
+- "Accept handoff, see what's pending"
+- "Complete handoff, record the output"
 
 ### Cursor
-
-在 Cursor 设置 → MCP 中添加同样的配置。
+Add the same config in Cursor Settings → MCP.

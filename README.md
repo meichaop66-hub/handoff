@@ -1,6 +1,8 @@
-# Handoff 接棒工具
+# Handoff
 
-> 让不同 AI 工具之间无缝交接工作。你在 A 工具里干到一半，说一句"创建接棒"，换 B 工具说"接棒"就能继续，不用重新讲一遍背景。
+> Seamlessly hand off work between different AI tools. Start a task in Tool A, say "create handoff", switch to Tool B and say "accept handoff" — no need to repeat the context.
+
+[English](README.md) | [中文](README.zh-CN.md)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
@@ -9,93 +11,88 @@
 
 ---
 
-## 这是什么
+## What is this
 
-Handoff 是一个**跨 AI 工具的工作交接工具**。
+Handoff is a **cross-AI work handoff tool**.
 
-它把"切换 AI 工具时要重新讲一遍背景"这件事，变成了说两句话：在 A 工具里说"创建接棒"，换 B 工具说"接棒"。
+It turns "repeating the whole context every time you switch AI tools" into two sentences: say "create handoff" in Tool A, then say "accept handoff" in Tool B.
 
-每份接棒是一张标准化的工作交接单——任务是什么、做到哪了、还剩什么、注意事项、产物在哪——人和 AI 都能直接读、直接改。
+Each handoff is a standardized work handoff document — what the task is, how far it's gotten, what's left, things to watch out for, where the artifacts are. Both humans and AIs can read and edit it directly.
 
-## 解决什么问题
+## What problem it solves
 
-你在豆包里跟 AI 讨论了半天文章选题、大纲、风格要求。然后想让 WorkBuddy 去写初稿。
+You spend an hour discussing article topics, outlines, and style requirements with an AI in Doubao. Then you want WorkBuddy to write the first draft.
 
-**现在你要做的：**
-1. 自己回忆"我们刚才定了什么来着？"
-2. 手动整理：标题、大纲、风格、素材位置
-3. 复制粘贴到 WorkBuddy
-4. WorkBuddy 写完，你再回豆包，又要重新说一遍
+**What you have to do now:**
+1. Try to remember "what did we decide again?"
+2. Manually organize: title, outline, style, asset locations
+3. Copy-paste into WorkBuddy
+4. When WorkBuddy finishes, you go back to Doubao and have to explain everything again
 
-**每次切换 AI 工具，都要重新讲一遍。**
+**Every time you switch AI tools, you start over.**
 
-**用了 Handoff 之后：**
-- 在豆包里说"创建接棒" → 自动生成标准化交接单
-- 打开 WorkBuddy 说"接棒" → 自动读取交接单，直接开始
-- 写完说"完成接棒" → 记录产出，自动归档
-- 回豆包说"接棒" → 自动读到完成状态，继续改
+**With Handoff:**
+- Say "create handoff" in Doubao → automatically generates a standardized handoff document
+- Open WorkBuddy, say "accept handoff" → automatically reads the handoff doc and starts working
+- When done, say "complete handoff" → records output, auto-archives
+- Back in Doubao, say "accept handoff" → automatically reads the completion status and continues
 
-## 快速开始（3步）
+## Quick Start (3 steps)
 
-### 1. 安装
-
+### 1. Install
 ```bash
 pip install handoff
 ```
 
-### 2. 创建接棒
-
+### 2. Create a handoff
 ```bash
-handoff create "写公众号文章初稿" \
-  --completed "标题、大纲、风格已定" \
-  --todo "全文初稿3000字" \
-  --notes "简洁优雅，避免AI黑话" \
-  --project "公众号文章"
+handoff create "Write first draft of WeChat article" \
+  --completed "Title, outline, style finalized" \
+  --todo "Full draft ~3000 words" \
+  --notes "Concise and elegant, avoid AI jargon" \
+  --project "WeChat Article"
 ```
 
-### 3. 换个 AI 工具，接棒
-
+### 3. Switch to another AI tool, accept handoff
 ```bash
-handoff accept    # 读取最近的待接棒任务
-# ...干活...
-handoff complete --output "初稿已存到 /path/to/article.md"
+handoff accept    # Reads the most recent pending handoff
+# ... do the work ...
+handoff complete --output "Draft saved to /path/to/article.md"
 ```
 
-就这么简单。
+That's it.
 
-## 核心功能
+## Core Commands
 
-| 命令 | 说明 |
-|------|------|
-| `handoff create` | 创建接棒文档（任务、已完成、未完成、注意事项） |
-| `handoff accept` | 接受接棒（不指定 ID 取最近的待接棒） |
-| `handoff complete` | 完成接棒（记录产出，自动归档） |
-| `handoff list` | 查看所有接棒记录（支持按状态筛选） |
-| `handoff get` | 获取单个接棒的完整内容 |
-| `handoff serve` | 启动 MCP Server（供 AI 工具调用） |
+| Command | Description |
+|---------|-------------|
+| `handoff create` | Create a handoff document (task, completed, todo, notes) |
+| `handoff accept` | Accept a handoff (defaults to most recent pending) |
+| `handoff complete` | Complete a handoff (records output, auto-archives) |
+| `handoff list` | List all handoffs (filter by status) |
+| `handoff get` | Get full content of a single handoff |
+| `handoff serve` | Start MCP Server (for AI tools to call) |
 
-## 两种使用方式
+## Two Ways to Use
 
-### 方式一：命令行（不支持 MCP 的客户端也能用）
-
+### Option 1: CLI (works even without MCP support)
 ```bash
-# 创建接棒
-handoff create "任务描述" --completed "已完成" --todo "未完成" --notes "注意事项"
+# Create a handoff
+handoff create "Task description" --completed "Done" --todo "Remaining" --notes "Notes"
 
-# 查看待接棒
+# List pending handoffs
 handoff list --status active
 
-# 接受接棒
+# Accept a handoff
 handoff accept
 
-# 完成接棒
-handoff complete --output "产出信息" --notes "备注"
+# Complete a handoff
+handoff complete --output "Output info" --notes "Notes"
 ```
 
-### 方式二：MCP 协议（推荐，直接跟 AI 说人话）
+### Option 2: MCP Protocol (recommended — talk to AI naturally)
 
-在支持 MCP 的 AI 工具（Claude Code、Cursor、Codex、WorkBuddy 等）配置中添加：
-
+Add this to your MCP-capable AI tool config (Claude Code, Cursor, Codex, WorkBuddy, etc.):
 ```json
 {
   "mcpServers": {
@@ -107,126 +104,124 @@ handoff complete --output "产出信息" --notes "备注"
 }
 ```
 
-然后直接跟 AI 说：
-- "帮我创建接棒，这个任务交给下一个 AI"
-- "接棒，看看有什么待办"
-- "完成接棒，记录一下产出"
+Then just tell your AI:
+- "Create a handoff for this task, pass it to the next AI"
+- "Accept handoff, see what's pending"
+- "Complete handoff, record the output"
 
-更多示例见 [examples/README.md](examples/README.md)。
+More examples in [examples/README.md](examples/README.md).
 
-## 接棒文档长什么样
+## What a Handoff Document Looks Like
 
-每个接棒是一个纯 Markdown 文件：
+Each handoff is a plain Markdown file:
 
 ```markdown
 ---
 id: handoff_20260901_180621_13b99f
 created_at: 2026-09-01 18:06:21
 status: active
-project: 公众号文章
-tags: 写作,发布
+project: WeChat Article
+tags: writing,publishing
 ---
 
-# 接棒文档
+# Handoff Document
 
-## 任务
-写公众号第一篇文章初稿
+## Task
+Write first draft of first WeChat article
 
-## 已完成
-标题、大纲、风格已定，配图已做好
+## Completed
+Title, outline, style finalized, illustrations ready
 
-## 未完成
-全文初稿（约3000字）
+## Todo
+Full draft (~3000 words)
 
-## 注意事项
-- 风格：简洁优雅，柴静式叙事
-- 避免：赋能、闭环、抓手等AI黑话
+## Notes
+- Style: concise and elegant, Chai Jing-style narrative
+- Avoid: AI buzzwords like "empower", "closed loop", "lever"
 
-## 相关文件
-- 文章大纲：https://feishu.doubao.com/docx/xxx
+## Related Files
+- Article outline: https://feishu.doubao.com/docx/xxx
 ```
 
-## 数据存储
+## Data Storage
 
-所有接棒文档存在 `~/.handoff/` 目录：
-
+All handoff documents live in `~/.handoff/`:
 ```
 ~/.handoff/
-├── active/      # 待接手/进行中的接棒
-├── archive/     # 已完成的接棒（归档）
-└── .git/        # 自动版本管理
+├── active/      # Pending / in-progress handoffs
+├── archive/     # Completed handoffs (archived)
+└── .git/        # Auto version control
 ```
 
-- 纯 Markdown 文件，人和 AI 都能直接读、直接改
-- Git 自动版本管理，能回溯、能同步到远程仓库
-- 零数据库、零云端服务，数据不出你的电脑
+- Plain Markdown files — both humans and AIs can read and edit directly
+- Git auto version control — rollback and sync to remote repos
+- Zero database, zero cloud services — your data stays on your machine
 
-## 设计理念
+## Design Principles
 
-1. **纯文本存储** —— 不被工具绑架，数据永远是你的
-2. **本地优先** —— 不上云，隐私安全
-3. **核心逻辑独立** —— 以后加网页版、手机 APP，核心不用改
-4. **Git 原生** —— 开发者熟悉的工具，不用学新东西
-5. **零配置** —— 装完就能用，不用搭服务
+1. **Plain text storage** — not locked into any tool, your data is always yours
+2. **Local-first** — no cloud, privacy-first
+3. **Core logic independent** — future web/mobile apps reuse the same core
+4. **Git-native** — tools developers already know, no new learning curve
+5. **Zero config** — works immediately after install, no server setup
 
-## 技术栈
+## Tech Stack
 
 - Python 3.9+
-- MCP（Model Context Protocol）
-- 纯 Markdown 文件存储
-- Git 自动版本管理
-- 零数据库、零云端服务
+- MCP (Model Context Protocol)
+- Plain Markdown file storage
+- Git auto version control
+- Zero database, zero cloud services
 
-## 项目结构
+## Project Structure
 
 ```
 handoff/
 ├── handoff/
 │   ├── __init__.py
-│   ├── core.py          # 核心逻辑（HandoffManager）
-│   ├── cli.py           # 命令行接口
+│   ├── core.py          # Core logic (HandoffManager)
+│   ├── cli.py           # Command-line interface
 │   ├── mcp_server.py    # MCP Server
-│   ├── templates.py     # 文档模板
-│   └── git_utils.py     # Git 工具封装
+│   ├── templates.py     # Document templates
+│   └── git_utils.py     # Git utility wrapper
 ├── tests/
-│   └── test_full.py     # 完整功能测试（20个用例）
+│   └── test_full.py     # Full feature tests (20 cases)
 ├── examples/
-│   └── README.md        # 使用示例
+│   └── README.md        # Usage examples
 ├── pyproject.toml
 ├── CONTRIBUTING.md
 ├── LICENSE
 └── README.md
 ```
 
-## 路线图
+## Roadmap
 
-### v0.1.0（当前，MVP）
-- [x] 核心功能：create / accept / list / complete / get
-- [x] CLI 命令行
+### v0.1.0 (current, MVP)
+- [x] Core: create / accept / list / complete / get
+- [x] CLI
 - [x] MCP Server
-- [x] Git 自动版本管理
-- [x] 完整测试（20个用例）
+- [x] Git auto version control
+- [x] Full test suite (20 cases)
 
-### v0.2.0（规划中）
-- [ ] 自动扫描上下文（Git 状态、最近文件）
-- [ ] AI 辅助生成接棒内容
-- [ ] 接棒模板自定义
-- [ ] 更好的错误提示
+### v0.2.0 (planned)
+- [ ] Auto context scanning (Git status, recent files)
+- [ ] AI-assisted handoff content generation
+- [ ] Custom handoff templates
+- [ ] Better error messages
 
-### 未来
-- [ ] Web 界面 / 可视化看板
-- [ ] 云端同步 / 多设备
-- [ ] 桌面 APP
-- [ ] 手机 APP / 小程序
-- [ ] 团队协作功能
+### Future
+- [ ] Web UI / visual dashboard
+- [ ] Cloud sync / multi-device
+- [ ] Desktop app
+- [ ] Mobile app / mini-program
+- [ ] Team collaboration features
 
-## 贡献
+## Contributing
 
-欢迎贡献！请阅读 [CONTRIBUTING.md](CONTRIBUTING.md) 了解如何开始。
-
-- 报告 Bug：开 Issue
-- 新功能建议：开 Issue 讨论
-- 代码贡献：提交 PR
+Contributions welcome! Read [CONTRIBUTING.md](CONTRIBUTING.md) to get started.
+- Bug reports: open an Issue
+- Feature suggestions: open an Issue to discuss
+- Code contributions: submit a PR
 
 ## License
 
