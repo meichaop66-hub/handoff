@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "handoff"
+version = "0.1.0"
+description = "让不同AI工具之间无缝交接工作的小工具"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [{name = "梅超"}]
+keywords = ["ai", "mcp", "handoff", "collaboration", "memory"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "mcp>=1.0.0",
+]
+
+[project.scripts]
+handoff = "handoff.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["handoff*"]

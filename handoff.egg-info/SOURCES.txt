@@ -1,0 +1,14 @@
+README.md
+pyproject.toml
+handoff/__init__.py
+handoff/cli.py
+handoff/core.py
+handoff/git_utils.py
+handoff/mcp_server.py
+handoff/templates.py
+handoff.egg-info/PKG-INFO
+handoff.egg-info/SOURCES.txt
+handoff.egg-info/dependency_links.txt
+handoff.egg-info/entry_points.txt
+handoff.egg-info/requires.txt
+handoff.egg-info/top_level.txt
