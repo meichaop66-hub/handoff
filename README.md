@@ -45,7 +45,7 @@ pip install handoff
 或者从源码安装：
 
 ```bash
-git clone https://github.com/yourname/handoff.git
+git clone https://github.com/meichaop66-hub/handoff.git
 cd handoff
 pip install -e .
 ```
