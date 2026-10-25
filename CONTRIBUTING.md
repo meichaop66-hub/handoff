@@ -34,13 +34,12 @@ Please explain in your Issue:
 
 - Keep code style consistent (PEP 8)
 - Add tests
-- Update documentation
+- Update documentation using the shared [Markdown presentation baseline](https://github.com/meichaop66-hub/yuanji/blob/main/docs/02-%E8%A7%84%E8%8C%83/%E6%96%87%E6%A1%A3%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80%E4%B8%8EMarkdown%E6%8E%92%E7%89%88%E5%9F%BA%E7%BA%BFv1.0.md)
 - Use Conventional Commits format: `feat:`, `fix:`, `docs:`, `refactor:`
 
 ## Development Environment
 
 ```bash
-
 # Install
 
 pip install -e ".[dev]"
