@@ -9,7 +9,6 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![MCP](https://img.shields.io/badge/MCP-supported-purple.svg)](https://modelcontextprotocol.io/)
 
----
 
 ## What is this
 
@@ -127,13 +126,11 @@ More examples in [examples/README.md](examples/README.md).
 Each handoff is a plain Markdown file:
 
 ```markdown
----
 id: handoff_20260901_180621_13b99f
 created_at: 2026-09-01 18:06:21
 status: active
 project: WeChat Article
 tags: writing,publishing
----
 
 # Handoff Document
 
@@ -165,7 +162,6 @@ All handoff documents live in `~/.handoff/`:
 ```
 ~/.handoff/
 ├── active/      # Pending / in-progress handoffs
-
 ├── archive/     # Completed handoffs (archived)
 
 └── .git/        # Auto version control
@@ -199,21 +195,16 @@ handoff/
 ├── handoff/
 │   ├── __init__.py
 │   ├── core.py          # Core logic (HandoffManager)
-
 │   ├── cli.py           # Command-line interface
 
 │   ├── mcp_server.py    # MCP Server
-
 │   ├── templates.py     # Document templates
 
 │   └── git_utils.py     # Git utility wrapper
-
 ├── tests/
 │   └── test_full.py     # Full feature tests (20 cases)
-
 ├── examples/
 │   └── README.md        # Usage examples
-
 ├── pyproject.toml
 ├── CONTRIBUTING.md
 ├── LICENSE
@@ -255,3 +246,8 @@ Contributions welcome! Read [CONTRIBUTING.md](CONTRIBUTING.md) to get started.
 ## License
 
 [MIT](LICENSE)
+
+
+## Documentation style
+
+README, contribution guidance, and handoff examples follow the shared [Markdown presentation baseline](https://github.com/meichaop66-hub/yuanji/blob/main/docs/02-%E8%A7%84%E8%8C%83/%E6%96%87%E6%A1%A3%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80%E4%B8%8EMarkdown%E6%8E%92%E7%89%88%E5%9F%BA%E7%BA%BFv1.0.md). The handoff schema and command examples remain authoritative for their own fields and behavior.
