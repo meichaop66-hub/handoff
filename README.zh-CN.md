@@ -9,7 +9,6 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.zh-CN.md)
 [![MCP](https://img.shields.io/badge/MCP-supported-purple.svg)](https://modelcontextprotocol.io/)
 
-
 ## 这是什么
 
 Handoff 是一个**跨 AI 工具的工作交接工具**。
