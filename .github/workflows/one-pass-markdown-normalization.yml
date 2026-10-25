@@ -1,0 +1,56 @@
+name: One-pass Markdown normalization
+
+on:
+  push:
+    branches:
+      - docs/format-pass-20261025
+    paths:
+      - '.github/workflows/one-pass-markdown-normalization.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  normalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: docs/format-pass-20261025
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Normalize every Markdown file in one pass
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          changed = []
+          for p in Path('.').rglob('*.md'):
+              if any(part in {'.git', 'node_modules', 'vendor', '.venv'} for part in p.parts):
+                  continue
+              try:
+                  old = p.read_text(encoding='utf-8')
+              except (UnicodeDecodeError, OSError):
+                  continue
+              new = old.replace('\r\n', '\n').replace('\r', '\n')
+              new = '\n'.join(line.rstrip(' \t') for line in new.split('\n'))
+              new = re.sub(r'\n{3,}', '\n\n', new).rstrip('\n') + '\n'
+              if new != old:
+                  p.write_text(new, encoding='utf-8', newline='\n')
+                  changed.append(str(p))
+          print(f'Normalized {len(changed)} Markdown files.')
+          for name in changed:
+              print(name)
+          PY
+      - name: Commit the batch if anything changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- '*.md'
+          if ! git diff --cached --quiet; then
+            git commit -m "Normalize Markdown formatting across the repository"
+            git push origin docs/format-pass-20261025
+          else
+            echo "All Markdown files already match the normalization rules."
+          fi

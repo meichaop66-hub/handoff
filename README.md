@@ -40,11 +40,13 @@ You spend an hour discussing article topics, outlines, and style requirements wi
 ## Quick Start (3 steps)
 
 ### 1. Install
+
 ```bash
 pip install handoff
 ```
 
 ### 2. Create a handoff
+
 ```bash
 handoff create "Write first draft of WeChat article" \
   --completed "Title, outline, style finalized" \
@@ -54,9 +56,12 @@ handoff create "Write first draft of WeChat article" \
 ```
 
 ### 3. Switch to another AI tool, accept handoff
+
 ```bash
 handoff accept    # Reads the most recent pending handoff
+
 # ... do the work ...
+
 handoff complete --output "Draft saved to /path/to/article.md"
 ```
 
@@ -76,17 +81,23 @@ That's it.
 ## Two Ways to Use
 
 ### Option 1: CLI (works even without MCP support)
+
 ```bash
+
 # Create a handoff
+
 handoff create "Task description" --completed "Done" --todo "Remaining" --notes "Notes"
 
 # List pending handoffs
+
 handoff list --status active
 
 # Accept a handoff
+
 handoff accept
 
 # Complete a handoff
+
 handoff complete --output "Output info" --notes "Notes"
 ```
 
@@ -127,19 +138,24 @@ tags: writing,publishing
 # Handoff Document
 
 ## Task
+
 Write first draft of first WeChat article
 
 ## Completed
+
 Title, outline, style finalized, illustrations ready
 
 ## Todo
+
 Full draft (~3000 words)
 
 ## Notes
+
 - Style: concise and elegant, Chai Jing-style narrative
 - Avoid: AI buzzwords like "empower", "closed loop", "lever"
 
 ## Related Files
+
 - Article outline: https://feishu.doubao.com/docx/xxx
 ```
 
@@ -149,8 +165,11 @@ All handoff documents live in `~/.handoff/`:
 ```
 ~/.handoff/
 ├── active/      # Pending / in-progress handoffs
+
 ├── archive/     # Completed handoffs (archived)
+
 └── .git/        # Auto version control
+
 ```
 
 - Plain Markdown files — both humans and AIs can read and edit directly
@@ -180,14 +199,21 @@ handoff/
 ├── handoff/
 │   ├── __init__.py
 │   ├── core.py          # Core logic (HandoffManager)
+
 │   ├── cli.py           # Command-line interface
+
 │   ├── mcp_server.py    # MCP Server
+
 │   ├── templates.py     # Document templates
+
 │   └── git_utils.py     # Git utility wrapper
+
 ├── tests/
 │   └── test_full.py     # Full feature tests (20 cases)
+
 ├── examples/
 │   └── README.md        # Usage examples
+
 ├── pyproject.toml
 ├── CONTRIBUTING.md
 ├── LICENSE
@@ -197,6 +223,7 @@ handoff/
 ## Roadmap
 
 ### v0.1.0 (current, MVP)
+
 - [x] Core: create / accept / list / complete / get
 - [x] CLI
 - [x] MCP Server
@@ -204,12 +231,14 @@ handoff/
 - [x] Full test suite (20 cases)
 
 ### v0.2.0 (planned)
+
 - [ ] Auto context scanning (Git status, recent files)
 - [ ] AI-assisted handoff content generation
 - [ ] Custom handoff templates
 - [ ] Better error messages
 
 ### Future
+
 - [ ] Web UI / visual dashboard
 - [ ] Cloud sync / multi-device
 - [ ] Desktop app

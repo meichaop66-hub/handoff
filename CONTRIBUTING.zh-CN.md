@@ -40,16 +40,21 @@
 ## 开发环境
 
 ```bash
+
 # 安装
+
 pip install -e ".[dev]"
 
 # 运行测试
+
 python3 tests/test_full.py
 
 # 本地运行 CLI
+
 python3 -m handoff.cli --help
 
 # 本地运行 MCP Server
+
 python3 -m handoff.cli serve
 ```
 
@@ -58,13 +63,21 @@ python3 -m handoff.cli serve
 ```
 handoff/
 ├── handoff/          # 核心代码
+
 │   ├── core.py       # 核心逻辑
+
 │   ├── cli.py        # 命令行接口
+
 │   ├── mcp_server.py # MCP Server
+
 │   ├── templates.py  # 文档模板
+
 │   └── git_utils.py  # Git 工具
+
 ├── tests/            # 测试
+
 ├── examples/         # 使用示例
+
 └── README.md
 ```
 
