@@ -40,11 +40,13 @@ Handoff 是一个**跨 AI 工具的工作交接工具**。
 ## 快速开始（3步）
 
 ### 1. 安装
+
 ```bash
 pip install handoff
 ```
 
 ### 2. 创建接棒
+
 ```bash
 handoff create "写公众号文章初稿" \
   --completed "标题、大纲、风格已定" \
@@ -54,9 +56,12 @@ handoff create "写公众号文章初稿" \
 ```
 
 ### 3. 换个 AI 工具，接棒
+
 ```bash
 handoff accept    # 读取最近的待接棒任务
+
 # ...干活...
+
 handoff complete --output "初稿已存到 /path/to/article.md"
 ```
 
@@ -76,17 +81,23 @@ handoff complete --output "初稿已存到 /path/to/article.md"
 ## 两种使用方式
 
 ### 方式一：命令行（不支持 MCP 的客户端也能用）
+
 ```bash
+
 # 创建接棒
+
 handoff create "任务描述" --completed "已完成" --todo "未完成" --notes "注意事项"
 
 # 查看待接棒
+
 handoff list --status active
 
 # 接受接棒
+
 handoff accept
 
 # 完成接棒
+
 handoff complete --output "产出信息" --notes "备注"
 ```
 
@@ -127,19 +138,24 @@ tags: 写作,发布
 # 接棒文档
 
 ## 任务
+
 写公众号第一篇文章初稿
 
 ## 已完成
+
 标题、大纲、风格已定，配图已做好
 
 ## 未完成
+
 全文初稿（约3000字）
 
 ## 注意事项
+
 - 风格：简洁优雅，柴静式叙事
 - 避免：赋能、闭环、抓手等AI黑话
 
 ## 相关文件
+
 - 文章大纲：https://feishu.doubao.com/docx/xxx
 ```
 
@@ -149,8 +165,11 @@ tags: 写作,发布
 ```
 ~/.handoff/
 ├── active/      # 待接手/进行中的接棒
+
 ├── archive/     # 已完成的接棒（归档）
+
 └── .git/        # 自动版本管理
+
 ```
 
 - 纯 Markdown 文件，人和 AI 都能直接读、直接改
@@ -180,14 +199,21 @@ handoff/
 ├── handoff/
 │   ├── __init__.py
 │   ├── core.py          # 核心逻辑（HandoffManager）
+
 │   ├── cli.py           # 命令行接口
+
 │   ├── mcp_server.py    # MCP Server
+
 │   ├── templates.py     # 文档模板
+
 │   └── git_utils.py     # Git 工具封装
+
 ├── tests/
 │   └── test_full.py     # 完整功能测试（20个用例）
+
 ├── examples/
 │   └── README.md        # 使用示例
+
 ├── pyproject.toml
 ├── CONTRIBUTING.md
 ├── LICENSE
@@ -197,6 +223,7 @@ handoff/
 ## 路线图
 
 ### v0.1.0（当前，MVP）
+
 - [x] 核心功能：create / accept / list / complete / get
 - [x] CLI 命令行
 - [x] MCP Server
@@ -204,12 +231,14 @@ handoff/
 - [x] 完整测试（20个用例）
 
 ### v0.2.0（规划中）
+
 - [ ] 自动扫描上下文（Git 状态、最近文件）
 - [ ] AI 辅助生成接棒内容
 - [ ] 接棒模板自定义
 - [ ] 更好的错误提示
 
 ### 未来
+
 - [ ] Web 界面 / 可视化看板
 - [ ] 云端同步 / 多设备
 - [ ] 桌面 APP
