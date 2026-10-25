@@ -38,13 +38,11 @@ You spend an hour discussing article topics, outlines, and style requirements wi
 ## Quick Start (3 steps)
 
 ### 1. Install
-
 ```bash
 pip install handoff
 ```
 
 ### 2. Create a handoff
-
 ```bash
 handoff create "Write first draft of WeChat article" \
   --completed "Title, outline, style finalized" \
@@ -54,7 +52,6 @@ handoff create "Write first draft of WeChat article" \
 ```
 
 ### 3. Switch to another AI tool, accept handoff
-
 ```bash
 handoff accept    # Reads the most recent pending handoff
 
@@ -79,7 +76,6 @@ That's it.
 ## Two Ways to Use
 
 ### Option 1: CLI (works even without MCP support)
-
 ```bash
 
 # Create a handoff
@@ -123,7 +119,6 @@ More examples in [examples/README.md](examples/README.md).
 ## What a Handoff Document Looks Like
 
 Each handoff is a plain Markdown file:
-
 ```markdown
 id: handoff_20260901_180621_13b99f
 created_at: 2026-09-01 18:06:21
@@ -188,7 +183,6 @@ All handoff documents live in `~/.handoff/`:
 - Zero database, zero cloud services
 
 ## Project Structure
-
 ```
 handoff/
 ├── handoff/
@@ -249,3 +243,7 @@ Contributions welcome! Read [CONTRIBUTING.md](CONTRIBUTING.md) to get started.
 ## Documentation style
 
 README, contribution guidance, and handoff examples follow the shared [Markdown presentation baseline](https://github.com/meichaop66-hub/yuanji/blob/main/docs/02-%E8%A7%84%E8%8C%83/%E6%96%87%E6%A1%A3%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80%E4%B8%8EMarkdown%E6%8E%92%E7%89%88%E5%9F%BA%E7%BA%BFv1.0.md). The handoff schema and command examples remain authoritative for their own fields and behavior.
+
+## Documentation presentation
+
+Follow [Markdown Presentation Baseline](DOCUMENTATION_STYLE.md) for consistent headings, spacing, lists, tables, and emphasis.

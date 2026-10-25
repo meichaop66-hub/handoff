@@ -3,7 +3,6 @@
 ## Example 1: Writing an article across AI tools
 
 ### Create a handoff in Doubao
-
 ```bash
 handoff create "Write first draft of first WeChat article" \
   --completed "Title, outline, style finalized, 6 illustrations ready" \
@@ -15,7 +14,6 @@ handoff create "Write first draft of first WeChat article" \
 ```
 
 ### Accept and complete in WorkBuddy
-
 ```bash
 
 # Accept handoff
@@ -30,7 +28,6 @@ handoff complete \
 ```
 
 ### Go back to Doubao to continue
-
 ```bash
 handoff accept
 
@@ -43,7 +40,6 @@ handoff accept
 ## Example 2: Coding across multiple devices
 
 ### Create a handoff on work computer
-
 ```bash
 handoff create "Implement user login feature" \
   --completed "Database schema designed, API endpoints defined" \
@@ -55,7 +51,6 @@ handoff create "Implement user login feature" \
 ```
 
 ### Sync to home computer
-
 ```bash
 
 # Sync ~/.handoff directory to Git or cloud drive
@@ -65,7 +60,6 @@ git add -A && git commit -m "handoff update" && git push
 ```
 
 ### Continue on home computer
-
 ```bash
 cd ~/.handoff && git pull
 handoff accept
@@ -100,7 +94,6 @@ Then just tell Claude:
 ### Cursor
 
 Add the same config in Cursor Settings → MCP.
-
 
 ## Documentation style
 
