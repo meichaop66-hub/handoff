@@ -40,16 +40,21 @@ Please explain in your Issue:
 ## Development Environment
 
 ```bash
+
 # Install
+
 pip install -e ".[dev]"
 
 # Run tests
+
 python3 tests/test_full.py
 
 # Run CLI locally
+
 python3 -m handoff.cli --help
 
 # Run MCP Server locally
+
 python3 -m handoff.cli serve
 ```
 
@@ -58,13 +63,21 @@ python3 -m handoff.cli serve
 ```
 handoff/
 ├── handoff/          # Core code
+
 │   ├── core.py       # Core logic
+
 │   ├── cli.py        # CLI interface
+
 │   ├── mcp_server.py # MCP Server
+
 │   ├── templates.py  # Document templates
+
 │   └── git_utils.py  # Git utilities
+
 ├── tests/            # Tests
+
 ├── examples/         # Usage examples
+
 └── README.md
 ```
 
