@@ -104,6 +104,7 @@ handoff complete --output "产出信息" --notes "备注"
 ### 方式二：MCP 协议（推荐，直接跟 AI 说人话）
 
 在支持 MCP 的 AI 工具（Claude Code、Cursor、Codex、WorkBuddy 等）配置中添加：
+
 ```json
 {
   "mcpServers": {
@@ -162,6 +163,7 @@ tags: 写作,发布
 ## 数据存储
 
 所有接棒文档存在 `~/.handoff/` 目录：
+
 ```
 ~/.handoff/
 ├── active/      # 待接手/进行中的接棒
