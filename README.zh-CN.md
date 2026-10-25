@@ -38,13 +38,11 @@ Handoff 是一个**跨 AI 工具的工作交接工具**。
 ## 快速开始（3步）
 
 ### 1. 安装
-
 ```bash
 pip install handoff
 ```
 
 ### 2. 创建接棒
-
 ```bash
 handoff create "写公众号文章初稿" \
   --completed "标题、大纲、风格已定" \
@@ -54,7 +52,6 @@ handoff create "写公众号文章初稿" \
 ```
 
 ### 3. 换个 AI 工具，接棒
-
 ```bash
 handoff accept    # 读取最近的待接棒任务
 
@@ -79,7 +76,6 @@ handoff complete --output "初稿已存到 /path/to/article.md"
 ## 两种使用方式
 
 ### 方式一：命令行（不支持 MCP 的客户端也能用）
-
 ```bash
 
 # 创建接棒
@@ -102,7 +98,6 @@ handoff complete --output "产出信息" --notes "备注"
 ### 方式二：MCP 协议（推荐，直接跟 AI 说人话）
 
 在支持 MCP 的 AI 工具（Claude Code、Cursor、Codex、WorkBuddy 等）配置中添加：
-
 ```json
 {
   "mcpServers": {
@@ -124,7 +119,6 @@ handoff complete --output "产出信息" --notes "备注"
 ## 接棒文档长什么样
 
 每个接棒是一个纯 Markdown 文件：
-
 ```markdown
 id: handoff_20260901_180621_13b99f
 created_at: 2026-09-01 18:06:21
@@ -159,7 +153,6 @@ tags: 写作,发布
 ## 数据存储
 
 所有接棒文档存在 `~/.handoff/` 目录：
-
 ```
 ~/.handoff/
 ├── active/      # 待接手/进行中的接棒
@@ -191,7 +184,6 @@ tags: 写作,发布
 - 零数据库、零云端服务
 
 ## 项目结构
-
 ```
 handoff/
 ├── handoff/
@@ -257,3 +249,7 @@ handoff/
 ## 文档呈现约定
 
 README、贡献指南与接棒示例遵循元基仓库的[文档视觉语言与 Markdown 排版基线](https://github.com/meichaop66-hub/yuanji/blob/main/docs/02-%E8%A7%84%E8%8C%83/%E6%96%87%E6%A1%A3%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80%E4%B8%8EMarkdown%E6%8E%92%E7%89%88%E5%9F%BA%E7%BA%BFv1.0.md)；接棒模板中的示例内容与字段结构不因排版统一而改变。
+
+## Documentation presentation
+
+Follow [Markdown Presentation Baseline](DOCUMENTATION_STYLE.md) for consistent headings, spacing, lists, tables, and emphasis.

@@ -38,7 +38,6 @@
 - 提交信息使用 Conventional Commits 格式：`feat:`、`fix:`、`docs:`、`refactor:`
 
 ## 开发环境
-
 ```bash
 # 安装
 
@@ -58,7 +57,6 @@ python3 -m handoff.cli serve
 ```
 
 ## 项目结构
-
 ```
 handoff/
 ├── handoff/          # 核心代码

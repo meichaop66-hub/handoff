@@ -38,7 +38,6 @@ Please explain in your Issue:
 - Use Conventional Commits format: `feat:`, `fix:`, `docs:`, `refactor:`
 
 ## Development Environment
-
 ```bash
 # Install
 
@@ -58,7 +57,6 @@ python3 -m handoff.cli serve
 ```
 
 ## Project Structure
-
 ```
 handoff/
 ├── handoff/          # Core code
