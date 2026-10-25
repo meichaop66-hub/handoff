@@ -9,7 +9,6 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.zh-CN.md)
 [![MCP](https://img.shields.io/badge/MCP-supported-purple.svg)](https://modelcontextprotocol.io/)
 
----
 
 ## 这是什么
 
@@ -128,13 +127,11 @@ handoff complete --output "产出信息" --notes "备注"
 每个接棒是一个纯 Markdown 文件：
 
 ```markdown
----
 id: handoff_20260901_180621_13b99f
 created_at: 2026-09-01 18:06:21
 status: active
 project: 公众号文章
 tags: 写作,发布
----
 
 # 接棒文档
 
@@ -257,3 +254,8 @@ handoff/
 ## License
 
 [MIT](LICENSE)
+
+
+## 文档呈现约定
+
+README、贡献指南与接棒示例遵循元基仓库的[文档视觉语言与 Markdown 排版基线](https://github.com/meichaop66-hub/yuanji/blob/main/docs/02-%E8%A7%84%E8%8C%83/%E6%96%87%E6%A1%A3%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80%E4%B8%8EMarkdown%E6%8E%92%E7%89%88%E5%9F%BA%E7%BA%BFv1.0.md)；接棒模板中的示例内容与字段结构不因排版统一而改变。
