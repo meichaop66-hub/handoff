@@ -4,10 +4,20 @@
 
 [English](README.md) | [中文](README.zh-CN.md)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Tests](https://github.com/meichaop66-hub/handoff/actions/workflows/test.yml/badge.svg)](https://github.com/meichaop66-hub/handoff/actions/workflows/test.yml)
+[![PyPI](https://img.shields.io/pypi/v/handoff.svg)](https://pypi.org/project/handoff/)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![MCP](https://img.shields.io/badge/MCP-supported-purple.svg)](https://modelcontextprotocol.io/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+
+![Handoff demo: create a handoff, accept it in another tool, complete it](docs/demo.gif)
+
+**One sentence, one file.** Handoff keeps the whole context as plain Markdown in `~/.handoff/` — no server, no database, no account, no cloud. Because that file is shared, *any* AI tool or session on the machine can pick up exactly where the last one stopped. Add it as an MCP server and "accept handoff" is literally all you have to say.
+
+```bash
+pip install handoff
+```
 
 ## What is this
 

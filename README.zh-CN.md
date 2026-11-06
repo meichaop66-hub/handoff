@@ -4,10 +4,20 @@
 
 [English](README.md) | [中文](README.zh-CN.md)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Tests](https://github.com/meichaop66-hub/handoff/actions/workflows/test.yml/badge.svg)](https://github.com/meichaop66-hub/handoff/actions/workflows/test.yml)
+[![PyPI](https://img.shields.io/pypi/v/handoff.svg)](https://pypi.org/project/handoff/)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.zh-CN.md)
 [![MCP](https://img.shields.io/badge/MCP-supported-purple.svg)](https://modelcontextprotocol.io/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.zh-CN.md)
+
+![接棒演示：创建接棒 → 换个工具接棒 → 完成归档](docs/demo.gif)
+
+**一句话，一份文件。** 接棒把全部上下文写成 `~/.handoff/` 里的纯 Markdown——没有服务、没有数据库、不用注册、不上云。因为文件是共享的，同一台机器上的**任意** AI 工具或会话都能从上一棒停下的地方继续；配成 MCP 之后，你只要说一句"接棒"就够了。
+
+```bash
+pip install handoff
+```
 
 ## 这是什么
 
