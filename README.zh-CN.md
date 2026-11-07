@@ -5,7 +5,7 @@
 [English](README.md) | [中文](README.zh-CN.md)
 
 [![Tests](https://github.com/meichaop66-hub/handoff/actions/workflows/test.yml/badge.svg)](https://github.com/meichaop66-hub/handoff/actions/workflows/test.yml)
-[![PyPI](https://img.shields.io/pypi/v/handoff.svg)](https://pypi.org/project/handoff/)
+[![PyPI](https://img.shields.io/pypi/v/handoff-ai.svg)](https://pypi.org/project/handoff-ai/)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![MCP](https://img.shields.io/badge/MCP-supported-purple.svg)](https://modelcontextprotocol.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -16,7 +16,7 @@
 **一句话，一份文件。** 接棒把全部上下文写成 `~/.handoff/` 里的纯 Markdown——没有服务、没有数据库、不用注册、不上云。因为文件是共享的，同一台机器上的**任意** AI 工具或会话都能从上一棒停下的地方继续；配成 MCP 之后，你只要说一句"接棒"就够了。
 
 ```bash
-pip install handoff
+pip install handoff-ai
 ```
 
 ## 这是什么
@@ -49,8 +49,10 @@ Handoff 是一个**跨 AI 工具的工作交接工具**。
 
 ### 1. 安装
 ```bash
-pip install handoff
+pip install handoff-ai
 ```
+
+PyPI 发行包名为 `handoff-ai`，安装后提供的命令是 `handoff`。
 
 ### 2. 创建接棒
 ```bash

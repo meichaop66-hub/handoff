@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "handoff"
+name = "handoff-ai"
 version = "0.1.0"
 description = "让不同AI工具之间无缝交接工作的小工具"
 readme = "README.md"

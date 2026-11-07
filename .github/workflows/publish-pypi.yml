@@ -5,7 +5,7 @@ name: Publish to PyPI
 #
 # Before the first run, configure PyPI Trusted Publishing (OIDC) for this repo:
 #   PyPI -> Account settings -> Publishing -> Add a new pending publisher
-#     PyPI project name: handoff
+#     PyPI project name: handoff-ai
 #     Owner: meichaop66-hub   Repository: handoff
 #     Workflow name: publish-pypi.yml   Environment name: pypi
 # Then create the "pypi" environment in the GitHub repo settings.

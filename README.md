@@ -5,7 +5,7 @@
 [English](README.md) | [中文](README.zh-CN.md)
 
 [![Tests](https://github.com/meichaop66-hub/handoff/actions/workflows/test.yml/badge.svg)](https://github.com/meichaop66-hub/handoff/actions/workflows/test.yml)
-[![PyPI](https://img.shields.io/pypi/v/handoff.svg)](https://pypi.org/project/handoff/)
+[![PyPI](https://img.shields.io/pypi/v/handoff-ai.svg)](https://pypi.org/project/handoff-ai/)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![MCP](https://img.shields.io/badge/MCP-supported-purple.svg)](https://modelcontextprotocol.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -16,7 +16,7 @@
 **One sentence, one file.** Handoff keeps the whole context as plain Markdown in `~/.handoff/` — no server, no database, no account, no cloud. Because that file is shared, *any* AI tool or session on the machine can pick up exactly where the last one stopped. Add it as an MCP server and "accept handoff" is literally all you have to say.
 
 ```bash
-pip install handoff
+pip install handoff-ai
 ```
 
 ## What is this
@@ -49,8 +49,10 @@ You spend an hour discussing article topics, outlines, and style requirements wi
 
 ### 1. Install
 ```bash
-pip install handoff
+pip install handoff-ai
 ```
+
+The distribution is named `handoff-ai` on PyPI; the command it installs is `handoff`.
 
 ### 2. Create a handoff
 ```bash
