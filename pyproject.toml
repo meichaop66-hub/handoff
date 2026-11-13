@@ -20,7 +20,11 @@ classifiers = [
 ]
 
 dependencies = [
-    "mcp>=1.0.0",
+    # 上界是必要的：mcp 2.x 把高层入口 FastMCP 改名为 MCPServer，
+    # 低层 Server 也不再提供 list_tools/call_tool 装饰器。
+    # 本项目的 mcp_server.py 同时兼容 1.x 与 2.x，但 2.x 要求 Python >= 3.10，
+    # 因此 Python 3.9 环境仍需 1.x。
+    "mcp>=1.0.0,<3",
 ]
 
 [project.scripts]

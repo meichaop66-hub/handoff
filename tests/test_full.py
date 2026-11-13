@@ -6,18 +6,58 @@ Handoff 完整功能测试
 import os
 import shutil
 import sys
+import tempfile
 
 # 添加项目路径
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+# Windows 终端默认可能是 GBK 等非 UTF-8 编码，输出中文与符号会抛
+# UnicodeEncodeError。强制 stdout/stderr 使用 UTF-8，避免测试被终端编码打断。
+for _stream in (sys.stdout, sys.stderr):
+    if hasattr(_stream, "reconfigure"):
+        try:
+            _stream.reconfigure(encoding="utf-8", errors="replace")
+        except Exception:
+            pass
+
 from handoff.core import HandoffManager
 
 
+def git_available() -> bool:
+    """本机是否有可用的 git 命令"""
+    from handoff.git_utils import git_available as _git_available
+
+    return _git_available()
+
+
+def cleanup_dir(path):
+    """删除测试目录。
+
+    Windows 上 git 对象的文件属性可能让普通删除失败，失败时不应中断整个测试，
+    改为尽力删除：先清掉只读属性再删，个别文件删不掉就跳过。
+    """
+    if not os.path.exists(path):
+        return
+
+    def make_writable(func, failed_path, exc_info):
+        try:
+            os.chmod(failed_path, 0o700)
+            func(failed_path)
+        except Exception:
+            pass
+
+    # onerror 在 Python 3.12 起废弃，onexc 从 3.12 起提供
+    if sys.version_info >= (3, 12):
+        shutil.rmtree(path, onexc=make_writable)
+    else:
+        shutil.rmtree(path, onerror=make_writable)
+
+
 def test_all():
-    test_dir = "/tmp/handoff-full-test"
+    # 用系统临时目录，避免硬编码 /tmp 在 Windows 上落到盘符根目录
+    test_dir = os.path.join(tempfile.gettempdir(), "handoff-full-test")
     # 清理测试目录
-    if os.path.exists(test_dir):
-        shutil.rmtree(test_dir)
+    cleanup_dir(test_dir)
 
     manager = HandoffManager(base_dir=test_dir)
     passed = 0
@@ -26,10 +66,10 @@ def test_all():
     def assert_test(name, condition, detail=""):
         nonlocal passed, failed
         if condition:
-            print(f"✅ {name}")
+            print(f"[PASS] {name}")
             passed += 1
         else:
-            print(f"❌ {name}: {detail}")
+            print(f"[FAIL] {name}: {detail}")
             failed += 1
 
     print("=== Handoff 完整功能测试 ===\n")
@@ -117,9 +157,14 @@ def test_all():
     assert_test("接受不存在的接棒返回错误", "error" in not_found_accept, not_found_accept)
 
     # 测试11: git版本管理
+    # 版本管理是可选增强：git 不可用时接棒文档仍要正常工作。
+    # 因此只有在本机确实有 git 时才断言仓库被创建。
     print("\n--- 测试11: git版本管理 ---")
     git_dir = os.path.join(test_dir, ".git")
-    assert_test("git仓库已初始化", os.path.exists(git_dir), git_dir)
+    if git_available():
+        assert_test("git仓库已初始化", os.path.exists(git_dir), git_dir)
+    else:
+        print("[SKIP] 本机没有可用的 git，跳过 git 仓库断言（接棒功能本身已验证）")
 
     # 总结
     print(f"\n=== 测试结果 ===")
@@ -128,10 +173,10 @@ def test_all():
     print(f"总计: {passed + failed}")
 
     if failed > 0:
-        print("\n❌ 有测试失败！")
+        print("\n[FAIL] 有测试失败！")
         sys.exit(1)
     else:
-        print("\n✅ 所有测试通过！")
+        print("\n[OK] 所有测试通过！")
         sys.exit(0)
 
 
